@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -19,7 +20,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scenery" translatesAutoresizingMaskIntoConstraints="NO" id="aND-Em-4Dd">
                                 <rect key="frame" x="0.0" y="20" width="600" height="536"/>
                                 <animations/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JNF-wb-wwY">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
@@ -106,55 +107,26 @@
                         <outlet property="bottomMenu" destination="JNF-wb-wwY" id="jTm-2q-PDu"/>
                         <outlet property="filterButton" destination="C6B-1F-j0K" id="6Kf-1q-zun"/>
                         <outlet property="imageView" destination="aND-Em-4Dd" id="vbi-rB-DhQ"/>
-                        <outlet property="secondaryMenu" destination="ePS-oG-ZHP" id="Be7-JW-Iwe"/>
+                        <outlet property="secondaryMenu" destination="0ws-Wl-Bk8" id="eRH-wf-T7R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="ePS-oG-ZHP">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="64"/>
+                <view contentMode="scaleToFill" id="ePS-oG-ZHP" userLabel="Slider view">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="24"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="n3M-NR-6VP">
-                            <rect key="frame" x="0.0" y="0.0" width="240" height="64"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Drk-Kp-614">
-                                    <rect key="frame" x="0.0" y="0.0" width="48" height="64"/>
-                                    <animations/>
-                                    <color key="tintColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    <state key="normal" image="paint-brush"/>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axt-GK-a6m">
-                                    <rect key="frame" x="48" y="0.0" width="48" height="64"/>
-                                    <animations/>
-                                    <color key="tintColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <state key="normal" image="paint-brush"/>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNq-be-bSy">
-                                    <rect key="frame" x="96" y="0.0" width="48" height="64"/>
-                                    <animations/>
-                                    <state key="normal" image="paint-brush"/>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zUq-ef-bpc">
-                                    <rect key="frame" x="144" y="0.0" width="48" height="64"/>
-                                    <animations/>
-                                    <state key="normal" title="Yellow"/>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7P8-VM-YCw">
-                                    <rect key="frame" x="192" y="0.0" width="48" height="64"/>
-                                    <animations/>
-                                    <state key="normal" title="Purple"/>
-                                </button>
-                            </subviews>
+                        <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="49B-VY-RwH">
+                            <rect key="frame" x="-2" y="0.0" width="244" height="21"/>
                             <animations/>
-                        </stackView>
+                        </slider>
                     </subviews>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="n3M-NR-6VP" secondAttribute="trailing" id="23L-58-Mzz"/>
-                        <constraint firstAttribute="bottom" secondItem="n3M-NR-6VP" secondAttribute="bottom" id="IFa-Q5-UOE"/>
-                        <constraint firstItem="n3M-NR-6VP" firstAttribute="top" secondItem="ePS-oG-ZHP" secondAttribute="top" id="ciD-QT-Tl9"/>
-                        <constraint firstItem="n3M-NR-6VP" firstAttribute="leading" secondItem="ePS-oG-ZHP" secondAttribute="leading" id="uEa-cd-VyS"/>
+                        <constraint firstAttribute="bottom" secondItem="49B-VY-RwH" secondAttribute="bottom" id="KXO-9A-NYU"/>
+                        <constraint firstAttribute="trailing" secondItem="49B-VY-RwH" secondAttribute="trailing" id="T3u-hO-jhE"/>
+                        <constraint firstItem="49B-VY-RwH" firstAttribute="top" secondItem="ePS-oG-ZHP" secondAttribute="top" id="m8L-Vs-0te"/>
+                        <constraint firstItem="49B-VY-RwH" firstAttribute="leading" secondItem="ePS-oG-ZHP" secondAttribute="leading" id="xfW-mJ-Bd7"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" id="0ws-Wl-Bk8">
@@ -164,26 +136,46 @@
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pFU-oN-Sk3">
                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             <animations/>
-                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NN4-q4-0X6">
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NN4-q4-0X6">
                                 <size key="itemSize" width="50" height="50"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </collectionViewFlowLayout>
                             <cells>
-                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="s4F-2l-m0q">
+                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CELL" id="s4F-2l-m0q" customClass="MyCell" customModule="Filterer" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                         <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eyl-pB-egZ">
+                                                <rect key="frame" x="8" y="8" width="28" height="28"/>
+                                                <animations/>
+                                            </imageView>
+                                        </subviews>
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <animations/>
+                                    <constraints>
+                                        <constraint firstItem="eyl-pB-egZ" firstAttribute="leading" secondItem="s4F-2l-m0q" secondAttribute="leadingMargin" id="C4X-4W-gEf"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="eyl-pB-egZ" secondAttribute="bottom" id="E8J-Ko-Jui"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="eyl-pB-egZ" secondAttribute="trailing" id="TG1-3d-X8C"/>
+                                        <constraint firstItem="eyl-pB-egZ" firstAttribute="top" secondItem="s4F-2l-m0q" secondAttribute="topMargin" id="WRO-we-FHm"/>
+                                    </constraints>
                                     <size key="customSize" width="44" height="44"/>
+                                    <connections>
+                                        <outlet property="imageView" destination="eyl-pB-egZ" id="3Ze-gZ-UnT"/>
+                                    </connections>
                                 </collectionViewCell>
                             </cells>
+                            <connections>
+                                <outlet property="dataSource" destination="BYZ-38-t0r" id="yvU-ly-rF2"/>
+                                <outlet property="delegate" destination="BYZ-38-t0r" id="9lX-Qv-hsv"/>
+                            </connections>
                         </collectionView>
                     </subviews>
                     <animations/>
@@ -202,7 +194,6 @@
     <resources>
         <image name="bubble-heart" width="30" height="30"/>
         <image name="cog" width="30" height="30"/>
-        <image name="paint-brush" width="30" height="30"/>
         <image name="paint-palette" width="30" height="30"/>
         <image name="picture-frame" width="30" height="30"/>
         <image name="scenery" width="2251" height="2417"/>

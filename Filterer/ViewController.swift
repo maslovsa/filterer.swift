@@ -8,20 +8,22 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UINavigationControllerDelegate {
 
     var filteredImage: UIImage?
     
     @IBOutlet var imageView: UIImageView!
     
     @IBOutlet var secondaryMenu: UIView!
+    @IBOutlet var sliderMenu: UIView!
+    
     @IBOutlet var bottomMenu: UIView!
     
     @IBOutlet var filterButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        secondaryMenu.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+        secondaryMenu.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.9)
         secondaryMenu.translatesAutoresizingMaskIntoConstraints = false
     }
 
@@ -63,19 +65,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         presentViewController(cameraPicker, animated: true, completion: nil)
     }
-    
-    // MARK: UIImagePickerControllerDelegate
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        dismissViewControllerAnimated(true, completion: nil)
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imageView.image = image
-        }
-    }
-    
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
+
     // MARK: Filter Menu
     @IBAction func onFilter(sender: UIButton) {
         if (sender.selected) {
@@ -94,7 +84,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let leftConstraint = secondaryMenu.leftAnchor.constraintEqualToAnchor(view.leftAnchor)
         let rightConstraint = secondaryMenu.rightAnchor.constraintEqualToAnchor(view.rightAnchor)
         
-        let heightConstraint = secondaryMenu.heightAnchor.constraintEqualToConstant(44)
+        let heightConstraint = secondaryMenu.heightAnchor.constraintEqualToConstant(55)
         
         NSLayoutConstraint.activateConstraints([bottomConstraint, leftConstraint, rightConstraint, heightConstraint])
         
@@ -115,6 +105,75 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 }
         }
     }
-
+    
+    func getImage(index: Int) -> String {
+        switch index{
+        case 0..<3: return "paint-brush"
+        case 3:     return "charlie-chaplin" // black-white
+        case 4:     return "camera-photo"    // sepia
+        case 5:     return "paint-bucket"    // brightness
+        case 6:     return "paint-roller"    // contrast
+        case 7:     return "pencil-ruler"    // trunc
+        default: return "bomb"
+        }
+    }
+    
+    func getColor(index: Int) -> UIColor {
+        switch index{
+        case 0:     return UIColor.redColor()
+        case 1:     return UIColor.greenColor()
+        case 2:     return UIColor.blueColor()
+        default: return UIColor.whiteColor()
+        }
+    }
+    
+    func hasSlider(index: Int) -> Bool {
+        switch index{
+        case 4..<5:     return false
+        default: return true
+        }
+    }
 }
 
+// MARK: UIImagePickerControllerDelegate
+
+extension ViewController: UIImagePickerControllerDelegate {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        dismissViewControllerAnimated(true, completion: nil)
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imageView.image = image
+    }
+}
+
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+}
+
+// MARK: - UITableViewDataSource
+
+extension ViewController: UICollectionViewDataSource {
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+        return 8;
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let  cell = collectionView.dequeueReusableCellWithReuseIdentifier("CELL", forIndexPath: indexPath) as! MyCell
+        let image = UIImage(named: getImage(indexPath.row))
+        cell.imageView.image = image
+        cell.backgroundColor = getColor(indexPath.row)
+        return cell
+    }
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1;
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+
+extension ViewController: UICollectionViewDelegate {
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+}

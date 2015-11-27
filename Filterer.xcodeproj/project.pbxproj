@@ -13,6 +13,8 @@
 		4DC1999F1BB201E100AA75E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DC1999E1BB201E100AA75E7 /* Assets.xcassets */; };
 		4DC199A21BB201E100AA75E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DC199A01BB201E100AA75E7 /* LaunchScreen.storyboard */; };
 		4DC199AA1BB2049F00AA75E7 /* RGBAImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC199A91BB2049F00AA75E7 /* RGBAImage.swift */; };
+		8FF328611C08F56100C0CFAE /* ImageFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF328601C08F56100C0CFAE /* ImageFilter.swift */; };
+		8FF328631C08F9BB00C0CFAE /* MyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF328621C08F9BB00C0CFAE /* MyCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		4DC199A11BB201E100AA75E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4DC199A31BB201E100AA75E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DC199A91BB2049F00AA75E7 /* RGBAImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RGBAImage.swift; sourceTree = "<group>"; };
+		8FF328601C08F56100C0CFAE /* ImageFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFilter.swift; sourceTree = "<group>"; };
+		8FF328621C08F9BB00C0CFAE /* MyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +62,10 @@
 			children = (
 				4DC199971BB201E100AA75E7 /* AppDelegate.swift */,
 				4DC199991BB201E100AA75E7 /* ViewController.swift */,
+				8FF328601C08F56100C0CFAE /* ImageFilter.swift */,
 				4DC199A91BB2049F00AA75E7 /* RGBAImage.swift */,
 				4DC1999B1BB201E100AA75E7 /* Main.storyboard */,
+				8FF328621C08F9BB00C0CFAE /* MyCell.swift */,
 				4DC1999E1BB201E100AA75E7 /* Assets.xcassets */,
 				4DC199A01BB201E100AA75E7 /* LaunchScreen.storyboard */,
 				4DC199A31BB201E100AA75E7 /* Info.plist */,
@@ -138,6 +144,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DC1999A1BB201E100AA75E7 /* ViewController.swift in Sources */,
+				8FF328631C08F9BB00C0CFAE /* MyCell.swift in Sources */,
+				8FF328611C08F56100C0CFAE /* ImageFilter.swift in Sources */,
 				4DC199AA1BB2049F00AA75E7 /* RGBAImage.swift in Sources */,
 				4DC199981BB201E100AA75E7 /* AppDelegate.swift in Sources */,
 			);
