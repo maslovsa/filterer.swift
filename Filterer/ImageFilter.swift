@@ -1,5 +1,8 @@
 import UIKit
 public enum Filtertype {
+    case Red(Float)      // use 0 to 1
+    case Green(Float)      // use 0 to 1
+    case Blue(Float)      // use 0 to 1
     case GreyScale
     case Sepia
     case Brightness(Float)      // use 0.2 to 5
@@ -19,6 +22,60 @@ public class ImageFilter {
         let height: Int = (rgba?.height)!
         
         switch filter {
+        case .Red(let value):
+            for y in 0..<height {
+                for x in 0..<width {
+                    
+                    let index = y * width + x
+                    var pix: Pixel = (rgba?.pixels[index])!
+                    let red: Float = Float(pix.red) * value
+                    let green: Float = 0
+                    let blue: Float = 0
+
+                    pix.red = UInt8(red)
+                    pix.green = UInt8(green)
+                    pix.blue = UInt8(blue)
+                    
+                    rgba?.pixels[index] = pix;
+                }
+            }
+
+        case .Green(let value):
+            for y in 0..<height {
+                for x in 0..<width {
+                    
+                    let index = y * width + x
+                    var pix: Pixel = (rgba?.pixels[index])!
+                    let red: Float = 0
+                    let green: Float = Float(pix.green) * value
+                    let blue: Float = 0
+                    
+                    pix.red = UInt8(red)
+                    pix.green = UInt8(green)
+                    pix.blue = UInt8(blue)
+                    
+                    rgba?.pixels[index] = pix;
+                }
+            }
+        case .Blue(let value):
+            for y in 0..<height {
+                for x in 0..<width {
+                    
+                    let index = y * width + x
+                    var pix: Pixel = (rgba?.pixels[index])!
+                    let red: Float = 0
+                    let green: Float = 0
+                    let blue: Float = Float(pix.blue) * value
+                    
+                    pix.red = UInt8(red)
+                    pix.green = UInt8(green)
+                    pix.blue = UInt8(blue)
+                    
+                    rgba?.pixels[index] = pix;
+                }
+            }
+    
+            
         case .GreyScale:
             // The formula for luminosity is 0.21 R + 0.72 G + 0.07 B.
             for y in 0..<height {
@@ -111,7 +168,9 @@ public class ImageFilter {
                     }
                 }
             }
+            default: break
         }
+        
     }
     
     public var image : UIImage? {

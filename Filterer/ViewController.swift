@@ -20,27 +20,36 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet var bottomMenu: UIView!
     @IBOutlet weak var buttonCompare: UIButton!
-    
-    @IBOutlet weak var buttonEdit: UIButton!
-    @IBOutlet weak var slider: UISlider!
     @IBOutlet var filterButton: UIButton!
+    @IBOutlet weak var buttonEdit: UIButton!
+    
+    @IBOutlet weak var visualOriginal: UIVisualEffectView!
+    @IBOutlet weak var slider: UISlider!
     var image: UIImage?
     var isShowOriginal = true
     var currentIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        secondaryMenu.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.9)
+        secondaryMenu.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(1)
         secondaryMenu.translatesAutoresizingMaskIntoConstraints = false
-        
+        sliderMenu.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(1)
+        sliderMenu.translatesAutoresizingMaskIntoConstraints = false
+        initButtons()
+    }
+    
+    func initButtons() {
         image = imageView.image
         buttonCompare.enabled = false
         buttonEdit.enabled = false
+        visualOriginal.alpha = 0
+        filterButton.selected = false
+        
     }
-
+    
     // MARK: Share
     @IBAction func onShare(sender: AnyObject) {
-        let activityController = UIActivityViewController(activityItems: ["Check out our really cool app", imageView.image!], applicationActivities: nil)
+        let activityController = UIActivityViewController(activityItems: ["Check out our really cool app", imageViewFiltered.image!], applicationActivities: nil)
         presentViewController(activityController, animated: true, completion: nil)
     }
     
@@ -69,19 +78,33 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         presentViewController(cameraPicker, animated: true, completion: nil)
     }
 
-    @IBAction func showEdit(sender: AnyObject) {
-
+    @IBAction func showEdit(sender: UIButton) {
         if hasSlider(currentIndex) {
             buttonEdit.selected = !buttonEdit.selected
             if buttonEdit.selected {
+                if filterButton.selected {
+                    filterButton.selected = false
+                    hideSecondaryMenu()
+                }
                 showSlider()
-                hideSecondaryMenu(false)
             } else {
                 hideSlider()
-                showSecondaryMenu()
             }
         }
+    }
     
+    @IBAction func showFilter(sender: UIButton) {
+        sender.selected = !sender.selected
+        if (sender.selected) {
+            if buttonEdit.selected {
+                buttonEdit.selected = false
+                hideSlider()
+            }
+            
+            showSecondaryMenu()
+        } else {
+            hideSecondaryMenu()
+        }
     }
     
     func showAlbum() {
@@ -95,17 +118,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     @IBAction func onCompareImages(sender: AnyObject) {
         isShowOriginal = !isShowOriginal
         changeView(isShowOriginal)
-    }
-
-    // MARK: Filter Menu
-    @IBAction func onFilter(sender: UIButton) {
-        if (sender.selected) {
-            hideSecondaryMenu()
-            sender.selected = false
-        } else {
-            showSecondaryMenu()
-            sender.selected = true
-        }
     }
     
     func showSecondaryMenu() {
@@ -132,7 +144,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         let bottomConstraint = sliderMenu.bottomAnchor.constraintEqualToAnchor(bottomMenu.topAnchor)
         let leftConstraint = sliderMenu.leftAnchor.constraintEqualToAnchor(view.leftAnchor)
         let rightConstraint = sliderMenu.rightAnchor.constraintEqualToAnchor(view.rightAnchor)
-        let heightConstraint = sliderMenu.heightAnchor.constraintEqualToConstant(50)
+        let heightConstraint = sliderMenu.heightAnchor.constraintEqualToConstant(55)
         
         NSLayoutConstraint.activateConstraints([bottomConstraint, leftConstraint, rightConstraint, heightConstraint])
         
@@ -160,13 +172,17 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         }
     }
     
-    func hideSlider() {
+    func hideSlider(useAnimation: Bool = true) {
+        if useAnimation {
         UIView.animateWithDuration(animationDuration, animations: {
             self.sliderMenu.alpha = 0
             }) { completed in
                 if completed == true {
                     self.sliderMenu.removeFromSuperview()
                 }
+        }
+        } else {
+            self.sliderMenu.removeFromSuperview()
         }
     }
     
@@ -193,7 +209,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     
     func hasSlider(index: Int) -> Bool {
         switch index{
-        case 4..<5:     return false
+        case 3...4:     return false
         default: return true
         }
     }
@@ -201,6 +217,18 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     func applyFilterWithNumber(index: Int){
         let raw = ImageFilter(image: image!)
         switch index {
+        case 0:
+            let value = slider.value
+            raw.applyFilter(.Red(value))
+            imageViewFiltered.image = raw.image
+        case 1:
+            let value = slider.value
+            raw.applyFilter(.Green(value))
+            imageViewFiltered.image = raw.image
+        case 2:
+            let value = slider.value
+            raw.applyFilter(.Blue(value))
+            imageViewFiltered.image = raw.image
         case 3:
             raw.applyFilter(.GreyScale)
             imageViewFiltered.image = raw.image
@@ -231,16 +259,33 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     
     func changeView(isShowOriginal: Bool){
         if isShowOriginal{
-            imageView.alpha = 1.0
-            imageViewFiltered.alpha = 0.0
+            self.visualOriginal.alpha = 1.0
+
+            UIView.animateWithDuration(animationDuration) {
+                self.imageView.alpha = 1.0
+                self.imageViewFiltered.alpha = 0.0
+            }
+            
         } else {
-            imageView.alpha = 0.0
-            imageViewFiltered.alpha = 1.0
+            self.visualOriginal.alpha = 0.0
+
+            UIView.animateWithDuration(animationDuration) {
+                self.imageView.alpha = 0.0
+                self.imageViewFiltered.alpha = 1.0
+            }
         }
     }
 
     @IBAction func sliderDragged(sender: AnyObject) {
         applyFilterWithNumber(currentIndex)
+    }
+    
+    @IBAction func touchDown(sender: AnyObject) {
+        changeView(true)
+    }
+    
+    @IBAction func upInside(sender: AnyObject) {
+        changeView(false)
     }
 }
 
@@ -251,6 +296,9 @@ extension ViewController: UIImagePickerControllerDelegate {
         dismissViewControllerAnimated(true, completion: nil)
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.image = image
+            self.changeView(true)
+            self.initButtons()
+
     }
 }
 
