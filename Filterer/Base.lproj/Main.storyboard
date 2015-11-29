@@ -17,12 +17,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fWo-OB-6JU" userLabel="ImageFilterd">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fWo-OB-6JU" userLabel="ImageFilterd">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scenery" translatesAutoresizingMaskIntoConstraints="NO" id="aND-Em-4Dd" userLabel="imageOriginal">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minios" translatesAutoresizingMaskIntoConstraints="NO" id="aND-Em-4Dd" userLabel="imageOriginal">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -167,6 +167,16 @@
                     <rect key="frame" x="0.0" y="0.0" width="240" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
+                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PjE-P2-XCv">
+                            <rect key="frame" x="0.0" y="0.0" width="240" height="60"/>
+                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5ov-0g-C00">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="60"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <animations/>
+                            </view>
+                            <animations/>
+                            <blurEffect style="light"/>
+                        </visualEffectView>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pFU-oN-Sk3">
                             <rect key="frame" x="0.0" y="0.0" width="240" height="60"/>
                             <animations/>
@@ -213,18 +223,32 @@
                         </collectionView>
                     </subviews>
                     <animations/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="pFU-oN-Sk3" firstAttribute="top" secondItem="0ws-Wl-Bk8" secondAttribute="top" id="8c1-MB-oxr"/>
+                        <constraint firstItem="PjE-P2-XCv" firstAttribute="leading" secondItem="0ws-Wl-Bk8" secondAttribute="leading" id="DJB-Hr-IBn"/>
                         <constraint firstAttribute="trailing" secondItem="pFU-oN-Sk3" secondAttribute="trailing" id="GfS-2C-bGS"/>
+                        <constraint firstAttribute="trailing" secondItem="PjE-P2-XCv" secondAttribute="trailing" id="HAD-Na-WwW"/>
+                        <constraint firstItem="PjE-P2-XCv" firstAttribute="top" secondItem="0ws-Wl-Bk8" secondAttribute="top" id="HOV-Y4-hya"/>
                         <constraint firstAttribute="bottom" secondItem="pFU-oN-Sk3" secondAttribute="bottom" id="OYw-qh-ECn"/>
                         <constraint firstItem="pFU-oN-Sk3" firstAttribute="leading" secondItem="0ws-Wl-Bk8" secondAttribute="leading" id="qL4-cz-BK9"/>
+                        <constraint firstAttribute="bottom" secondItem="PjE-P2-XCv" secondAttribute="bottom" id="ueI-MM-MEC"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" id="Ari-VL-JXK">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
+                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GzZ-yx-8bM">
+                            <rect key="frame" x="0.0" y="0.0" width="240" height="60"/>
+                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ZAv-Bu-UJ3">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="60"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <animations/>
+                            </view>
+                            <animations/>
+                            <blurEffect style="light"/>
+                        </visualEffectView>
                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="49B-VY-RwH">
                             <rect key="frame" x="-2" y="0.0" width="244" height="61"/>
                             <animations/>
@@ -234,11 +258,15 @@
                         </slider>
                     </subviews>
                     <animations/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="GzZ-yx-8bM" firstAttribute="leading" secondItem="Ari-VL-JXK" secondAttribute="leading" id="7Va-85-2cP"/>
+                        <constraint firstItem="GzZ-yx-8bM" firstAttribute="top" secondItem="Ari-VL-JXK" secondAttribute="top" id="Rcd-fp-vWj"/>
                         <constraint firstItem="49B-VY-RwH" firstAttribute="top" secondItem="Ari-VL-JXK" secondAttribute="top" id="TB3-Qb-h0s"/>
+                        <constraint firstAttribute="bottom" secondItem="GzZ-yx-8bM" secondAttribute="bottom" id="ZVw-Ne-D9J"/>
                         <constraint firstItem="49B-VY-RwH" firstAttribute="leading" secondItem="Ari-VL-JXK" secondAttribute="leading" id="hDQ-rd-FWb"/>
                         <constraint firstAttribute="bottom" secondItem="49B-VY-RwH" secondAttribute="bottom" id="qQK-fv-piE"/>
+                        <constraint firstAttribute="trailing" secondItem="GzZ-yx-8bM" secondAttribute="trailing" id="rlH-q0-qee"/>
                         <constraint firstAttribute="trailing" secondItem="49B-VY-RwH" secondAttribute="trailing" id="z1g-9P-WXu"/>
                     </constraints>
                 </view>
@@ -249,9 +277,9 @@
     <resources>
         <image name="bubble-heart" width="30" height="30"/>
         <image name="cog" width="30" height="30"/>
+        <image name="minios" width="1920" height="1200"/>
         <image name="paint-palette" width="30" height="30"/>
         <image name="picture-frame" width="30" height="30"/>
-        <image name="scenery" width="2251" height="2417"/>
         <image name="write" width="30" height="30"/>
     </resources>
 </document>

@@ -2,14 +2,15 @@
 //  ViewController.swift
 //  Filterer
 //
-//  Created by Jack on 2015-09-22.
-//  Copyright © 2015 UofT. All rights reserved.
+//  Created by MaslovSA on 2015-11-29.
+//  Copyright © 2015 All rights reserved.
 //
 
 import UIKit
 
 class ViewController: UIViewController, UINavigationControllerDelegate {
     let animationDuration = 0.4
+    let alphaColor: CGFloat = 0.3
     var filteredImage: UIImage?
     
     @IBOutlet var imageView: UIImageView!
@@ -31,9 +32,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        secondaryMenu.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(1)
         secondaryMenu.translatesAutoresizingMaskIntoConstraints = false
-        sliderMenu.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(1)
         sliderMenu.translatesAutoresizingMaskIntoConstraints = false
         initButtons()
     }
@@ -200,10 +199,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     
     func getColor(index: Int) -> UIColor {
         switch index{
-        case 0:     return UIColor.redColor()
-        case 1:     return UIColor.greenColor()
-        case 2:     return UIColor.blueColor()
-        default: return UIColor.whiteColor()
+        case 0:     return UIColor.redColor().colorWithAlphaComponent(alphaColor)
+        case 1:     return UIColor.greenColor().colorWithAlphaComponent(alphaColor)
+        case 2:     return UIColor.blueColor().colorWithAlphaComponent(alphaColor)
+            
+        case 3:     return UIColor.blackColor().colorWithAlphaComponent(alphaColor)
+        case 4:     return UIColor.orangeColor().colorWithAlphaComponent(alphaColor)
+ 
+        default: return UIColor.whiteColor().colorWithAlphaComponent(alphaColor)
         }
     }
     
